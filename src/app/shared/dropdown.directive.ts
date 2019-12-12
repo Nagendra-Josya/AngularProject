@@ -14,7 +14,5 @@ export class DropdownDirective{
     constructor(private elRef:ElementRef){
 
     }
-    // @HostListener('away') toggleClose(){
-    //     this.isOpen==this.isOpen;
-    // }
+   
 }

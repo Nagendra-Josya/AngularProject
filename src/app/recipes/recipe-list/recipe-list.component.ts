@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Recipe } from '../recipe.model';
+import { RecipeService } from '../recipe.service';
 
 @Component({
   selector: 'app-recipe-list',
@@ -7,22 +8,19 @@ import { Recipe } from '../recipe.model';
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent implements OnInit {
+ 
+    recipes : Recipe[];
 
-@Output()recipeWasSelected = new EventEmitter<string>();
-  recipes : Recipe[] =[
-    new Recipe('Test Recipe', 'Test Desciption', 
-    'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_Logo.jpeg'),
-    new Recipe('Test Recipe', 'Test Desciption', 
-    'fhttps://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjwsLjupqnmAhWv4HMBHReQAwsQjRx6BAgBEAQ&url=%2Furl%3Fsa%3Di%26source%3Dimages%26cd%3D%26ved%3D2ahUKEwi3luTqpqnmAhWO73MBHZN5A0gQjRx6BAgBEAQ%26url%3Dhttps%253A%252F%252Fwww.shutterstock.com%252Fcategory%252Fnature%26psig%3DAOvVaw2cUAp2R_7drdVrdYUOQ6Zp%26ust%3D1576006223649781&psig=AOvVaw2cUAp2R_7drdVrdYUOQ6Zp&ust=1576006223649781'),
-    new Recipe('Test Recipe', 'Test Desciption', 
-    'fhttps://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjwsLjupqnmAhWv4HMBHReQAwsQjRx6BAgBEAQ&url=%2Furl%3Fsa%3Di%26source%3Dimages%26cd%3D%26ved%3D2ahUKEwi3luTqpqnmAhWO73MBHZN5A0gQjRx6BAgBEAQ%26url%3Dhttps%253A%252F%252Fwww.shutterstock.com%252Fcategory%252Fnature%26psig%3DAOvVaw2cUAp2R_7drdVrdYUOQ6Zp%26ust%3D1576006223649781&psig=AOvVaw2cUAp2R_7drdVrdYUOQ6Zp&ust=1576006223649781')];
-    constructor() { }
+
+ 
+    constructor(private recipeService: RecipeService) { 
+
+    }
 
   ngOnInit() {
+    this.recipes = this.recipeService.getRecipe();
   }
 
-  onRecipeSelected(recipe: Recipe){
-    this.recipeWasSelected.emit(recipe);
-  }
+ 
 
 }
